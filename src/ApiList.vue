@@ -260,7 +260,7 @@ export default {
 
         const fetchData = async (url: URL) => {
             try {
-                const response = await fetch(url)
+                const response = await fetch(url, { mode: 'no-cors' })
                 const data = await response.json()
                 rankData.value = data
             } catch (error) {
@@ -295,6 +295,7 @@ export default {
 
         return {
             team,
+            rankData,
             loading
         }
     }
@@ -303,6 +304,7 @@ export default {
 
 <template>
     <h2>test</h2>
+    <div>{{ rankData }}</div>
     <div>{{ team }}</div>
     <ol v-if="team.length">
         <li v-for="one in team" :key="team.indexOf(one)">{{ one }}</li>
